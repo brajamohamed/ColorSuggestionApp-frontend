@@ -1,0 +1,34 @@
+.container-fluid {
+  background-color: rgb(245, 245, 245);
+}
+.form-container {
+  background-color: white;
+  width: 500px;
+}
+/* .input-group-text {
+  width: 6em;
+} */
+input.input-error,
+select.input-error {
+  border-color: red;
+}
+.input-group {
+  position: relative;
+}
+.error-message {
+  color: red;
+  position: absolute;
+  bottom: -28px;
+  left: 15px;
+}
+.submit {
+  cursor: pointer;
+}
+.submit.disabled {
+  background-color: rgb(185, 185, 185);
+  cursor: not-allowed;
+  /* transition: all 0.2s ease-in-out; */
+}
+.submit:active {
+  transform: scale(0.98);
+}
