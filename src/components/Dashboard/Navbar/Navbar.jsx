@@ -2,8 +2,10 @@ import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import Logo from "../../Logo/Logo";
-import pic from "../../../assets/licensed-image.jpeg";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../../../rtk-store/slices/loginSlice";
 const Navbar = () => {
+  const dispatch = useDispatch();
   return (
     <div className="container-fluid p-0">
       <div className="navbar navbar-expand-md bg-white">
@@ -52,7 +54,11 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="" className="dropdown-item">
+                    <Link
+                      to=""
+                      className="dropdown-item"
+                      onClick={() => dispatch(setLogin(false))}
+                    >
                       Logout
                     </Link>
                   </li>

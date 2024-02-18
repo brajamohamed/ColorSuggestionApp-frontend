@@ -3,6 +3,7 @@ import "./Registration.css";
 import { useFormik } from "formik";
 import { registraionSchema } from "../../yup/registraionSchema";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { USER_BASE_URL } from "../../api/user.api";
 import Logo from "../Logo/Logo";
@@ -15,8 +16,11 @@ const Registration = () => {
     await axios
       .post(`${USER_BASE_URL}/register`, data)
       .then((response) => console.log(response))
-      .catch((error) => console.log(error));
-    actions.resetForm();
+      .catch((error) => {
+        alert(error.response.data.error);
+        console.log(error.response.data);
+      });
+    // actions.resetForm();
   };
 
   const fetchData = async () => {
@@ -63,21 +67,20 @@ const Registration = () => {
     onSubmit,
   });
   return (
-    <div className="container-fluid">
-      <div className="d-flex flex-column justify-content-center align-items-center vh-100">
-        {/* <h1 className="text-primary fw-bolder">Colorful</h1> */}
-        <div className="mt-5">
-          <Logo />
+    <div className="registraion-container d-flex flex-column justify-content-center align-items-center vh-100">
+      <div className="registration-logo">
+        <Logo size={"lg"} />
+      </div>
+      <div className="form-container rounded-3">
+        <div className="text-center border-bottom mt-3">
+          <h4>Create a new account</h4>
+          <p>It's quick and easy.</p>
         </div>
-        <div className="form-container rounded-3">
-          <div className="d-flex flex-column align-items-center pt-3 border-bottom ">
-            <h5>Create a new account</h5>
-            <p>It's quick and easy.</p>
-          </div>
-          <form
-            onSubmit={handleSubmit}
-            className="form d-flex flex-column align-items-center gap-4 p-3 pt-4 "
-          >
+        <form
+          onSubmit={handleSubmit}
+          className="form d-flex flex-column align-items-center gap-4 p-3 mt-2 "
+        >
+          <div className="d-flex gap-3">
             {/* NAME */}
             <div className="input-group">
               <input
@@ -116,65 +119,65 @@ const Registration = () => {
                 <small className="error-message">{errors.gender}</small>
               )}
             </div>
-
-            {/* EMAIL */}
-            <div className="input-group">
-              <input
-                className={`form-control ${
-                  errors.email && touched.email ? "input-error" : ""
-                }`}
-                id="email"
-                type="email"
-                placeholder="Your Email Id"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-              />
-              {errors.email && touched.email && (
-                <small className="error-message">{errors.email}</small>
-              )}
-            </div>
-            {/* PHONE */}
-            <div className="input-group">
-              <input
-                className={`form-control ${
-                  errors.phone && touched.phone ? "input-error" : ""
-                }`}
-                id="phone"
-                type="number"
-                placeholder="Your Mobile number"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.phone}
-              />
-              {errors.phone && touched.phone && (
-                <small className="error-message">{errors.phone}</small>
-              )}
-            </div>
-
-            {/* DATE OF BIRTH */}
-            <div className="input-group">
-              <label
-                htmlFor="dateOfBirth"
-                className="input-group-text registration-form-label"
-              >
-                Date of birth
-              </label>
-              <input
-                className={`form-control ${
-                  errors.dateOfBirth && touched.dateOfBirth ? "input-error" : ""
-                }`}
-                id="dateOfBirth"
-                type="date"
-                placeholder="Your Date of Birth"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.dateOfBirth}
-              />
-              {errors.dateOfBirth && touched.dateOfBirth && (
-                <small className="error-message">{errors.dateOfBirth}</small>
-              )}
-            </div>
+          </div>
+          {/* EMAIL */}
+          <div className="input-group">
+            <input
+              className={`form-control ${
+                errors.email && touched.email ? "input-error" : ""
+              }`}
+              id="email"
+              type="email"
+              placeholder="Your Email Id"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.email}
+            />
+            {errors.email && touched.email && (
+              <small className="error-message">{errors.email}</small>
+            )}
+          </div>
+          {/* PHONE */}
+          <div className="input-group">
+            <input
+              className={`form-control ${
+                errors.phone && touched.phone ? "input-error" : ""
+              }`}
+              id="phone"
+              type="number"
+              placeholder="Your Mobile number"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.phone}
+            />
+            {errors.phone && touched.phone && (
+              <small className="error-message">{errors.phone}</small>
+            )}
+          </div>
+          {/* DATE OF BIRTH */}
+          <div className="input-group">
+            <label
+              htmlFor="dateOfBirth"
+              className="input-group-text registration-form-label"
+            >
+              Date of birth
+            </label>
+            <input
+              className={`form-control ${
+                errors.dateOfBirth && touched.dateOfBirth ? "input-error" : ""
+              }`}
+              id="dateOfBirth"
+              type="date"
+              placeholder="Your Date of Birth"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.dateOfBirth}
+            />
+            {errors.dateOfBirth && touched.dateOfBirth && (
+              <small className="error-message">{errors.dateOfBirth}</small>
+            )}
+          </div>
+          <div className="d-flex gap-3">
             {/* COUNTRY */}
             <div className="input-group">
               <select
@@ -199,7 +202,6 @@ const Registration = () => {
                 <small className="error-message">{errors.country}</small>
               )}
             </div>
-
             {/* CITY */}
             <div className="input-group">
               <select
@@ -232,7 +234,8 @@ const Registration = () => {
                 <small className="error-message">{errors.city}</small>
               )}
             </div>
-
+          </div>
+          <div className="d-flex gap-3">
             {/* PASSWORD */}
             <div className="input-group">
               <input
@@ -250,7 +253,6 @@ const Registration = () => {
                 <small className="error-message">{errors.password}</small>
               )}
             </div>
-
             {/* CONFIRM PASSWORD */}
             <div className="input-group">
               <input
@@ -268,25 +270,28 @@ const Registration = () => {
                 <small className="error-message">{errors.cpassword}</small>
               )}
             </div>
-            {/* SUBMIT BUTTON */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`submit rounded bg-success text-white border-0 py-2 px-5 mt-3 fw-bold ${
-                isSubmitting && "disabled"
-              }`}
-              onClick={handleSubmit}
-            >
-              {isSubmitting ? (
-                <span
-                  className="spinner-grow spinner-grow-sm"
-                  role="status"
-                ></span>
-              ) : (
-                "Sign Up"
-              )}
-            </button>
-          </form>
+          </div>
+          {/* SUBMIT BUTTON */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`submit rounded bg-success text-white border-0 py-2 px-5 mt-3 fw-bold ${
+              isSubmitting && "disabled"
+            }`}
+            onClick={handleSubmit}
+          >
+            {isSubmitting ? (
+              <span
+                className="spinner-grow spinner-grow-sm"
+                role="status"
+              ></span>
+            ) : (
+              "Sign Up"
+            )}
+          </button>
+        </form>
+        <div className="text-center mb-3 login-link">
+          <Link to="/login">Already have a Account? Login</Link>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import { loginSchema } from "../../yup/loginSchema";
 import { USER_BASE_URL } from "../../api/user.api";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../../rtk-store/slices/loginSlice";
+import Logo from "../Logo/Logo";
 const Userlogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Userlogin = () => {
 
   useEffect(() => {
     login && navigate("/account");
-  }, []);
+  }, [login]);
   // ON SUBMIT FUNCTION
   const onSubmit = async (values, actions) => {
     console.log(values);
@@ -47,14 +48,15 @@ const Userlogin = () => {
     validationSchema: loginSchema,
     onSubmit,
   });
-  console.log(errors);
   return (
-    <div className="login-container  vh-100 bg-primary d-flex justify-content-center align-items-center">
-      <div className="form-container d-flex flex-column justify-content-center align-items-center rounded-3">
-        <h1 className="text-primary fw-bold mt-3">Colorful</h1>
+    <div className="login-container vh-100 d-flex justify-content-center align-items-center">
+      <div className="login-form-container d-flex flex-column justify-content-center align-items-center rounded-3 p-3">
+        <div>
+          <Logo size={"md"} />
+        </div>
         <form
           action=""
-          className="d-flex flex-column jusfify-content-center align-items-center gap-4 p- bg-white mx-5 my-3"
+          className="d-flex flex-column jusfify-content-center align-items-center gap-4 bg-white my-3"
         >
           {/* EMAIL */}
           <div className="input-group">
