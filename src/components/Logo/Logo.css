@@ -1,0 +1,12 @@
+.logo {
+  background-image: url("../../assets/istockphoto-689899998-612x612.jpg");
+  background-size: contain;
+  background-position: center;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: xx-large;
+}
+.logo:hover {
+  cursor: pointer;
+}

@@ -1,3 +1,4 @@
-const USER_BASE_URL = "https://colorful-cyyl.onrender.com/user";
-
-export { USER_BASE_URL };
+// const USER_BASE_URL = "https://colorful-cyyl.onrender.com/user";
+const USER_BASE_URL = "http://localhost:4000/user";
+const CONTACT_BASE_URL = "http://localhost:4000";
+export { USER_BASE_URL, CONTACT_BASE_URL };

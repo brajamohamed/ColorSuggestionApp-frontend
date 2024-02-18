@@ -5,6 +5,7 @@ import { registraionSchema } from "../../yup/registraionSchema";
 import axios from "axios";
 import { useState } from "react";
 import { USER_BASE_URL } from "../../api/user.api";
+import Logo from "../Logo/Logo";
 const Registration = () => {
   const [countryList, setCountryList] = useState([]);
 
@@ -64,7 +65,10 @@ const Registration = () => {
   return (
     <div className="container-fluid">
       <div className="d-flex flex-column justify-content-center align-items-center vh-100">
-        <h1 className="text-primary fw-bolder">Colorful</h1>
+        {/* <h1 className="text-primary fw-bolder">Colorful</h1> */}
+        <div className="mt-5">
+          <Logo />
+        </div>
         <div className="form-container rounded-3">
           <div className="d-flex flex-column align-items-center pt-3 border-bottom ">
             <h5>Create a new account</h5>
@@ -150,7 +154,10 @@ const Registration = () => {
 
             {/* DATE OF BIRTH */}
             <div className="input-group">
-              <label htmlFor="dateOfBirth" className="input-group-text">
+              <label
+                htmlFor="dateOfBirth"
+                className="input-group-text registration-form-label"
+              >
                 Date of birth
               </label>
               <input

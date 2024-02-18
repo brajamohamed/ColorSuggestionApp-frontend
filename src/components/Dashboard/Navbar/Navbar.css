@@ -1,0 +1,12 @@
+.user-profile {
+  height: 75px;
+  width: 75px;
+}
+.user-img {
+  height: inherit;
+  width: inherit;
+  background-image: url("../../../assets/licensed-image.jpeg");
+  background-position: contain;
+  background-size: cover;
+  border-radius: 50%;
+}

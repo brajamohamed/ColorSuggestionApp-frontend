@@ -5,9 +5,9 @@
   background-color: white;
   width: 500px;
 }
-/* .input-group-text {
-  width: 6em;
-} */
+.registration-form-label {
+  width: 7em;
+}
 input.input-error,
 select.input-error {
   border-color: red;

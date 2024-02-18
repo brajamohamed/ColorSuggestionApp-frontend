@@ -1,0 +1,25 @@
+.home {
+  background-image: url("../../assets/keith-misner-h0Vxgz5tyXA-unsplash.jpg");
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.input-group {
+  position: absolute;
+}
+.contact-error {
+  color: red;
+  position: absolute;
+  top: 45px;
+  left: 5px;
+}
+.contact-message-error {
+  position: absolute;
+  color: red;
+  top: 72px;
+  left: 5px;
+}

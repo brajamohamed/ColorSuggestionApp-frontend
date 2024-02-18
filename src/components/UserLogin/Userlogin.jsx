@@ -1,20 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "./Userlogin.css";
 import { useFormik } from "formik";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginSchema } from "../../yup/loginSchema";
 import { USER_BASE_URL } from "../../api/user.api";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogin } from "../../rtk-store/slices/loginSlice";
 const Userlogin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const login = useSelector((state) => state.login);
+
+  useEffect(() => {
+    login && navigate("/account");
+  }, []);
   // ON SUBMIT FUNCTION
   const onSubmit = async (values, actions) => {
     console.log(values);
     await axios
       .put(`${USER_BASE_URL}/login`, values)
-      .then((res) => console.log(res.data.jwt))
-      .catch((error) => console.log(error));
-    // actions.resetForm();
+      .then((res) => {
+        const token = res.data.jwt;
+        console.log("Login successfull");
+        localStorage.setItem("token", token);
+        dispatch(setLogin(true));
+      })
+      .catch((error) => {
+        alert("Invalid credentials");
+        console.log(error);
+      });
+    actions.resetForm();
   };
+
   //   FORMIK
   const {
     values,
@@ -23,6 +41,7 @@ const Userlogin = () => {
     handleSubmit,
     errors,
     isSubmitting,
+    touched,
   } = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: loginSchema,
@@ -39,31 +58,53 @@ const Userlogin = () => {
         >
           {/* EMAIL */}
           <div className="input-group">
-            <label htmlFor="username" className="input-group-text">
+            <label
+              htmlFor="username"
+              className="input-group-text login-form-label"
+            >
               Email
             </label>
             <input
               type="text"
-              className="form-control"
+              className={`form-control ${
+                errors.email && touched.email && "error-input"
+              }`}
               id="email"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.email}
             />
+            <small
+              className={`${errors.email && touched.email && "login-error"}`}
+            >
+              {errors.email && touched.email && errors?.email}
+            </small>
           </div>
           {/* PASSWORD */}
           <div className="input-group">
-            <label htmlFor="password" className="input-group-text">
+            <label
+              htmlFor="password"
+              className="input-group-text login-form-label"
+            >
               Password
             </label>
             <input
               type="password"
-              className="form-control"
+              className={`form-control ${
+                errors.password && touched.password && "error-input"
+              }`}
               id="password"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.password}
             />
+            <small
+              className={`${
+                errors.password && touched.password && "login-error"
+              }`}
+            >
+              {errors.password && touched.password && errors.password}
+            </small>
           </div>
           {/* SUBMIT */}
           <button
