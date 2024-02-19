@@ -39,7 +39,9 @@ const Home = () => {
   });
   return (
     <div>
-      <HomeNavbar />
+      <div className="home-navbar-container">
+        <HomeNavbar />
+      </div>
       <div className="home text-center text-white d-flex flex-column justify-content-center align-items-center">
         <div className="page">
           <h1>Get the most out of your wardrobe</h1>

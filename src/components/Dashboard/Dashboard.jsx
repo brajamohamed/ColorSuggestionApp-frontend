@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
+import "./Dashboard.css";
 import Navbar from "./Navbar/Navbar";
-import Sidebar from "./Sidebar/Sidebar";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Wardrobe from "./Wardrobe/Wardrobe";
 const Dashboard = () => {
   const login = useSelector((state) => state.login);
   const navigate = useNavigate();
@@ -13,10 +14,14 @@ const Dashboard = () => {
   }, [login]);
 
   return (
-    <div>
-      <Navbar />
+    <div className="">
+      <div className="account-navbar-container">
+        <Navbar />
+      </div>
       <div className="dashboard bg-secondary vh-100">
-        <Sidebar />
+        <div className="sidebar bg-primary">
+          <Wardrobe />
+        </div>
       </div>
     </div>
   );

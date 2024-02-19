@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const HomeNavbar = () => {
   const navigate = useNavigate();
   return (
-    <div className="container-fluid p-0">
+    <div className="container-fluid p-0 bg-light">
       <div className="navbar navbar-expand-lg ">
         <div className="container">
           <div className="navbar-brand">

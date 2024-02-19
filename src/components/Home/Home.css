@@ -1,6 +1,10 @@
 .home {
   background-image: url("../../assets/keith-misner-h0Vxgz5tyXA-unsplash.jpg");
 }
+.home-navbar-container {
+  position: sticky;
+  top: 0;
+}
 .page {
   display: flex;
   flex-direction: column;
