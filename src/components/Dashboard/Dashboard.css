@@ -1,4 +1,15 @@
 .account-navbar-container {
   position: sticky;
   top: 0;
+  z-index: 1;
+}
+.wardrobe-container {
+  position: sticky;
+  top: 10%;
+}
+.wardrobe {
+  position: absolute;
+  right: 0;
+  height: 90vh;
+  width: 25vw;
 }

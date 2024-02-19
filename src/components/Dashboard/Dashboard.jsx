@@ -19,8 +19,10 @@ const Dashboard = () => {
         <Navbar />
       </div>
       <div className="dashboard bg-secondary vh-100">
-        <div className="sidebar bg-primary">
-          <Wardrobe />
+        <div className="wardrobe-container">
+          <div className="wardrobe bg-primary">
+            <Wardrobe />
+          </div>
         </div>
       </div>
     </div>

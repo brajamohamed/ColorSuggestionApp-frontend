@@ -7,15 +7,21 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { USER_BASE_URL } from "../../api/user.api";
 import Logo from "../Logo/Logo";
+import { useNavigate } from "react-router-dom";
 const Registration = () => {
   const [countryList, setCountryList] = useState([]);
-
+  // const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
   const onSubmit = async (values, actions) => {
     const { cpassword, ...data } = values;
     console.log(data);
     await axios
       .post(`${USER_BASE_URL}/register`, data)
-      .then((response) => console.log(response))
+      .then((response) => {
+        console.log(response);
+        alert("Registration successfull");
+        navigate("/login");
+      })
       .catch((error) => {
         alert(error.response.data.error);
         console.log(error.response.data);
