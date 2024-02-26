@@ -14,7 +14,7 @@ const Userlogin = () => {
   const login = useSelector((state) => state.login);
 
   useEffect(() => {
-    login && navigate("/account");
+    login && navigate("/");
   }, [login]);
   // ON SUBMIT FUNCTION
   const onSubmit = async (values, actions) => {

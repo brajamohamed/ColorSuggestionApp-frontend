@@ -1,0 +1,12 @@
+.wardrobe-container {
+  display: flex;
+}
+.color-picker {
+  flex-basis: 30%;
+}
+.wardrobe {
+  flex-basis: 70%;
+  display: flex;
+  max-height: 60vh;
+  overflow-y: auto;
+}

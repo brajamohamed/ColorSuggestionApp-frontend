@@ -11,16 +11,19 @@ import { setUser } from "../../rtk-store/slices/userSlice";
 const Dashboard = () => {
   const login = useSelector((state) => state.login);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  // const navigate = useNavigate();
+  // IF NOT LOGGED IN NAVIGATE TO LOGIN
+  // useEffect(() => {
+  //   if (!login) {
+  //     console.log("i have to navigate to login");
+  //     navigate("/login");
+  //   }
+  // }, [login]);
+
+  // GET USER DETAILS
   useEffect(() => {
-    if (!login) {
-      console.log("i have to navigate to login");
-      navigate("/login");
-    }
-  }, [login]);
-  const token = localStorage.getItem("token");
-  console.log("token got from local storage:", token);
-  useEffect(() => {
+    const token = localStorage.getItem("token");
     const fetchData = async () => {
       try {
         const response = await axios.get(`${USER_BASE_URL}/user`, {
@@ -35,15 +38,16 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="">
+    <div>
       <div className="account-navbar-container">
         <Navbar />
       </div>
-      <div className="dashboard bg-secondary vh-100">
-        <div className="wardrobe-container">
-          <div className="wardrobe bg-primary">
-            <Wardrobe />
-          </div>
+      <div className="dashboard bg-secondary">
+        <div className="dashboard-home d-flex justify-content-center align-items-center">
+          I AM HOME
+        </div>
+        <div className="dashboard-wardrobe bg-primary d-flex justify-content-center align-items-center">
+          <Wardrobe />
         </div>
       </div>
     </div>

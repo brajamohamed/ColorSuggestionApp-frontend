@@ -3,13 +3,9 @@
   top: 0;
   z-index: 1;
 }
-.wardrobe-container {
-  position: sticky;
-  top: 10%;
+.dashboard-home {
+  height: 89.5vh;
 }
-.wardrobe {
-  position: absolute;
-  right: 0;
-  height: 90vh;
-  width: 25vw;
+.dashboard-wardrobe {
+  min-height: 100vh;
 }
