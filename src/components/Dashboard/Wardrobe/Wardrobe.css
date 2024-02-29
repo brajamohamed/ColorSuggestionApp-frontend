@@ -2,11 +2,17 @@
   display: flex;
 }
 .color-picker {
-  flex-basis: 30%;
+  flex-basis: 40%;
 }
 .wardrobe {
-  flex-basis: 70%;
+  flex-basis: 60%;
   display: flex;
-  max-height: 60vh;
+  max-height: 75vh;
   overflow-y: auto;
+}
+select.additem-input-error {
+  border: 1px solid red;
+}
+.addItem-error-message {
+  color: yellow;
 }

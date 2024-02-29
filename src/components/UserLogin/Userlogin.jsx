@@ -7,6 +7,9 @@ import { loginSchema } from "../../yup/loginSchema";
 import { USER_BASE_URL } from "../../api/user.api";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../../rtk-store/slices/loginSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Logo from "../Logo/Logo";
 const Userlogin = () => {
   const dispatch = useDispatch();
@@ -18,18 +21,29 @@ const Userlogin = () => {
   }, [login]);
   // ON SUBMIT FUNCTION
   const onSubmit = async (values, actions) => {
-    console.log(values);
     await axios
       .put(`${USER_BASE_URL}/login`, values)
       .then((res) => {
         const token = res.data.jwt;
-        console.log("Login successfull");
-        localStorage.setItem("token", token);
-        dispatch(setLogin(true));
+        if (token) {
+          toast.success(`Have a Colorful day`);
+          localStorage.setItem("token", token);
+          dispatch(setLogin(true));
+        } else {
+          throw new Error("Please try again");
+        }
       })
       .catch((error) => {
-        alert("Invalid credentials");
-        console.log(error);
+        if (error.response) {
+          if (error.response.status === 404) {
+            toast.error("Invalid credentials");
+          } else {
+            toast.error(error.response.data.error);
+          }
+        } else {
+          toast.error(error.message);
+          console.log(error);
+        }
       });
     actions.resetForm();
   };

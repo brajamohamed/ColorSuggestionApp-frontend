@@ -7,16 +7,9 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       return { ...action.payload };
     },
-    addColorToWardrobe: (state, action) => {
-      const newColor = action.payload;
-      return {
-        ...state,
-        wardrobe: [newColor, ...state.wardrobe],
-      };
-    },
-    deleteFromWardrobe: (state, action) => {},
   },
 });
 
-export const { setUser, addColorToWardrobe } = userSlice.actions;
+export const { setUser, addItemToWardrobe, deleteFromWardrobe } =
+  userSlice.actions;
 export default userSlice.reducer;

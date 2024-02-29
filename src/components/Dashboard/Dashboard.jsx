@@ -8,10 +8,10 @@ import Wardrobe from "./Wardrobe/Wardrobe";
 import { USER_BASE_URL } from "../../api/user.api";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../rtk-store/slices/userSlice";
+import DashHome from "./DashHome/DashHome";
 const Dashboard = () => {
-  const login = useSelector((state) => state.login);
   const dispatch = useDispatch();
-
+  // const login = useSelector((state) => state.login);
   // const navigate = useNavigate();
   // IF NOT LOGGED IN NAVIGATE TO LOGIN
   // useEffect(() => {
@@ -29,6 +29,7 @@ const Dashboard = () => {
         const response = await axios.get(`${USER_BASE_URL}/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log(response.data);
         dispatch(setUser(response.data));
       } catch (error) {
         console.log(error);
@@ -42,11 +43,14 @@ const Dashboard = () => {
       <div className="account-navbar-container">
         <Navbar />
       </div>
-      <div className="dashboard bg-secondary">
-        <div className="dashboard-home d-flex justify-content-center align-items-center">
-          I AM HOME
+      <div className="dashboard">
+        <div className="dashboard-home d-flex justify-content-center" id="home">
+          <DashHome />
         </div>
-        <div className="dashboard-wardrobe bg-primary d-flex justify-content-center align-items-center">
+        <div
+          className="dashboard-wardrobe d-flex justify-content-center align-items-center"
+          id="wardrobe"
+        >
           <Wardrobe />
         </div>
       </div>

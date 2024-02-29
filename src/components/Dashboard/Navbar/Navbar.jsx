@@ -6,6 +6,10 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../../../rtk-store/slices/loginSlice";
 const Navbar = () => {
   const dispatch = useDispatch();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    dispatch(setLogin(false));
+  };
   return (
     <div className="container-fluid p-0">
       <div className="navbar navbar-expand-md bg-white">
@@ -23,14 +27,14 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="menu">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Link to="/" className="nav-link">
+                <a href="#home" className="nav-link">
                   Home
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link to="/myWardrobe" className="nav-link">
+                <a href="#wardrobe" className="nav-link">
                   My Wardrobe
-                </Link>
+                </a>
               </li>
               <li className="nav-item dropdown">
                 <Link
@@ -57,7 +61,7 @@ const Navbar = () => {
                     <Link
                       to=""
                       className="dropdown-item"
-                      onClick={() => dispatch(setLogin(false))}
+                      onClick={handleLogout}
                     >
                       Logout
                     </Link>

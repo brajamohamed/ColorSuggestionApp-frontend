@@ -8,9 +8,11 @@ import { useState } from "react";
 import { USER_BASE_URL } from "../../api/user.api";
 import Logo from "../Logo/Logo";
 import { useNavigate } from "react-router-dom";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Registration = () => {
   const [countryList, setCountryList] = useState([]);
-  // const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
   const onSubmit = async (values, actions) => {
     const { cpassword, ...data } = values;
@@ -19,14 +21,18 @@ const Registration = () => {
       .post(`${USER_BASE_URL}/register`, data)
       .then((response) => {
         console.log(response);
-        alert("Registration successfull");
-        navigate("/login");
+        toast.success(
+          `Hello ${response.data.newUser.name}..Welcome to the Colorful Family`
+        );
+        setTimeout(() => {
+          navigate("/login");
+        }, 3500);
       })
       .catch((error) => {
-        alert(error.response.data.error);
+        toast.error(error.response.data.error);
         console.log(error.response.data);
       });
-    // actions.resetForm();
+    actions.resetForm();
   };
 
   const fetchData = async () => {
@@ -74,6 +80,11 @@ const Registration = () => {
   });
   return (
     <div className="registraion-container d-flex flex-column justify-content-center align-items-center vh-100">
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        transition={Bounce}
+      />
       <div className="registration-logo">
         <Logo size={"lg"} />
       </div>
